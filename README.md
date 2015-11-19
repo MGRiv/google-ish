@@ -15,7 +15,7 @@ Team Members
 		<td><a href="https://github.com/bilingwu">bilingwu</a></td>
 	</tr>
 	<tr>
-		<td>RJZheng1</td>
+		<td>Ri Jiu Zheng</td>
 		<td><a href="https://github.com/RJZheng1">RJZheng1</a></td>
 	</tr>
 </table>
