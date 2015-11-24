@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+{% set active_page = "home" %}
+
+{% block body %}
+<div class="col-sm-4">
+  <!-- stack of text input forms to enter ingredients -->
+  <h3>Search?</h3>
+
+  <form method="POST">
+
+    <div class="input-group">
+      <span id="query"></span>
+      <input type="text" class="form-control" placeholder="Whatcha Want?" aria-describedby="query" name="query">
+    </div>
+
+    <input type="submit" class="btn btn-primary btn-block" value="Search">
+
+  </form>
+</div>
+{% endblock %}
