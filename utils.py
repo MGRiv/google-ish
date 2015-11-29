@@ -13,6 +13,7 @@ def getQuery(query):
             continue
         page = url.read().decode('utf-8')
         soup = BeautifulSoup(page, 'html.parser')
+        pnames = []
         if q == 1:
             pnames = soup.find_all(string = re.compile('[A-Z][a-z]+ [A-Z][a-z]+')
         else:
