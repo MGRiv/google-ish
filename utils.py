@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 
 def getQuery(query):
     pages = google.search(query,start=0,stop=1)
+    q = findQuery(query)
     names = {}
     i = 10
     for p in pages:
@@ -12,7 +13,10 @@ def getQuery(query):
             continue
         page = url.read().decode('ascii', 'ignore')
         soup = BeautifulSoup(page, 'html.parser')
-        pnames = findNames(soup.get_text(page))
+        if q == 1:
+            pnames = findNames(soup.get_text(page))
+        else:
+            pnames = findPlace(soup.get_text(page))
         for n in pnames:
             if(n in names):
                 names[n] += 1
@@ -26,6 +30,18 @@ def getQuery(query):
 def findNames(name):
     pattern = re.compile('[A-Z][a-z]+ [A-Z][a-z]+')
     return pattern.findall(name,0,1000)
+
+
+def findPlace(place):
+    pattern = re.compile('[0-9]+ [A-Z][a-z]+|[A-Z][a-z]+|[0-9]+ [A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+, [A-Z][a-z]+|[A-Z][a-z]+ [A-Z][a-z]+, [A-Z][a-z]+')
+    return pattern.findall(place,0,1000)
+
+def findQuery(q):
+    if q.find("who") > -1:
+        return 1
+    else:
+        return 2
+
 
 print getQuery("Who plays Spiderman?")
 
