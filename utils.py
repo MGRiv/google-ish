@@ -44,7 +44,7 @@ def findQuery(q):
     elif q.find("where") > -1:
         return 3
                                    
-print getQuery("Who plays Spiderman?")
-print getQuery("Where is the Empire State Building")
-print getQuery("When were the Americas discovered?")
+#print getQuery("Who plays Spiderman?")
+#print getQuery("Where is the Empire State Building")
+#print getQuery("When were the Americas discovered?")
 
