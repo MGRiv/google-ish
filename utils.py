@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 def getQuery(query):
     pages = google.search(query,start=0,stop=10)
-    q = findQuery(query)
+    q = findQuery(query.lower())
     names = {}
     i = 10
     for p in pages:
@@ -15,9 +15,9 @@ def getQuery(query):
         soup = BeautifulSoup(page, 'html.parser')
         pnames = []
         if q == 1:
-            pnames = soup.find_all(string = re.compile('[A-Z][a-z]+ [A-Z][a-z]+')
+            pnames = soup.find_all(string = re.compile('[A-Z][a-z]+ [A-Z][a-z]+'))
         else:
-            pnames = soup.find_all(string = re.compile('[0-9]+ [A-Z][a-z]+|[A-Z][a-z]+|[0-9]+ [A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+ [A-Z][a-z]+|[A-Z][a-z]+, [A-Z][a-z]+|[A-Z][a-z]+ [A-Z][a-z]+, [A-Z][a-z]+')
+            pnames = soup.find_all(string = re.compile('([0-9]+ [A-Z][a-z]+)|([A-Z][a-z]+)|([0-9]+ [A-Z][a-z]+ [A-Z][a-z]+)|([A-Z][a-z]+ [A-Z][a-z]+)|([A-Z][a-z]+, [A-Z][a-z]+)|([A-Z][a-z]+ [A-Z][a-z]+, [A-Z][a-z]+)'))
         for n in pnames:
             if(n in names):
                 names[n] += 1
@@ -34,4 +34,5 @@ def findQuery(q):
         return 2
         
 print getQuery("Who plays Spiderman?")
+print getQuery("Where is the Empire State Building")
 
