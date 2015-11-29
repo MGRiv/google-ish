@@ -25,7 +25,7 @@ def getQuery(query):
             else:
                 names[n] = 1
                 sortedNames = sorted(names.items(), key = lambda x: x[1], reverse = True)
-                print names[sortedNames[0][0]]
+                #print names[sortedNames[0][0]]
         return sortedNames[0][0]
             
 def findNames(name):
