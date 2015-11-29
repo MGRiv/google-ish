@@ -10,7 +10,10 @@ def getQuery(query):
             url = urllib2.urlopen(p)
         except:
             continue
-        page = url.read().decode('ascii', 'ignore')
+        try:
+            page = url.read().decode('ascii', 'ignore')
+        except httplib.IncompleteRead as e:
+            page = e.partial
         soup = BeautifulSoup(page, 'html.parser')
         pnames = []
         if(q == 1):
