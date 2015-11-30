@@ -6,12 +6,11 @@ app= Flask(__name__)
 @app.route("/",methods=["GET","POST"])
 @app.route("/home",methods=["GET","POST"])
 def home():
-    if request.method == "GET":
-        return render_template("home.html")
-    else:
+    if request.method == "POST" and request.form.get('query') != "":
         q = request.form.get('query')
-        print "++++++++++++++++++++++++++++++++++++++++++++++++\n" + q
         return redirect(url_for("answer",query=q))
+    else:
+        return render_template("home.html")
 
 @app.route("/answer",methods=["GET","POST"])
 @app.route("/answer/<query>",methods=["GET","POST"])

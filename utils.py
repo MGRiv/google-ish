@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 def getQuery(query):
     pages = google.search(query,start=0,stop=10)
     q = findQuery(query.lower())
+    if q == None:
+        return "Your query needs to contain either who, when, or where"
     names = {}
     for p in pages:
         try:
@@ -29,8 +31,11 @@ def getQuery(query):
                 names[n] = 1
     sortedNames = sorted(names.items(), key = lambda x: x[1], reverse = True)
     #print names[sortedNames[0][0]]
-    return sortedNames[0][0]
-            
+    try:
+        return sortedNames[0][0]
+    except:
+        return "Invalid Query"
+
 def findNames(name):
     pattern = re.compile('[A-Z][a-z]+ [A-Z][a-z]+')
     return pattern.findall(name)
